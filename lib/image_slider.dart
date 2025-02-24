@@ -1,28 +1,17 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 
-class AnimatedCarouselSlider extends StatefulWidget {
-  const AnimatedCarouselSlider({super.key});
+class ImageCarouselSlider extends StatefulWidget {
+  const ImageCarouselSlider({super.key});
 
   @override
-  State<AnimatedCarouselSlider> createState() => _AnimatedCarouselSliderState();
+  State<ImageCarouselSlider> createState() => _ImageCarouselSliderState();
 }
 
-class _AnimatedCarouselSliderState extends State<AnimatedCarouselSlider> {
-  final List<CarouselSliderItem> items = [
-    CarouselSliderItem(
-        animation: 'assets/animations/map_with_marker.json',
-        title: 'Book Your Seat'),
-    CarouselSliderItem(
-        animation: 'assets/animations/map_with_marker.json',
-        title: 'Track Your Bus'),
-    CarouselSliderItem(
-        animation: 'assets/animations/map_with_marker.json',
-        title: 'Student Assistant'),
-    CarouselSliderItem(
-        animation: 'assets/animations/map_with_marker.json',
-        title: 'Asked to AI!'),
+class _ImageCarouselSliderState extends State<ImageCarouselSlider> {
+  final List<CarouselItemImage> items = [
+    CarouselItemImage(image: 'assets/images/image.jpg'),
+    CarouselItemImage(image: 'assets/images/image.jpg'),
   ];
 
   @override
@@ -46,23 +35,11 @@ class _AnimatedCarouselSliderState extends State<AnimatedCarouselSlider> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Expanded(
-                      child: Lottie.asset(
-                        item.animation,
+                      child: Image.asset(
+                        item.image,
                         width: double.infinity,
-                        height: double.infinity,
-                        fit: BoxFit.contain,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      item.title,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w900,
-                        color: Theme.of(context).brightness == Brightness.dark
-                            ? Colors.white
-                            : Colors.black,
+                        height: 180,
+                        fit: BoxFit.cover,
                       ),
                     ),
                   ],
@@ -71,13 +48,13 @@ class _AnimatedCarouselSliderState extends State<AnimatedCarouselSlider> {
             );
           }).toList(),
           options: CarouselOptions(
-            height: 200,
+            height: 180,
             aspectRatio: 16 / 9,
             viewportFraction: 0.95,
             initialPage: 0,
             enableInfiniteScroll: true,
             reverse: false,
-            autoPlay: true,
+            autoPlay: false,
             autoPlayInterval: const Duration(seconds: 5),
             autoPlayAnimationDuration: const Duration(milliseconds: 800),
             autoPlayCurve: Curves.fastOutSlowIn,
@@ -94,9 +71,8 @@ class _AnimatedCarouselSliderState extends State<AnimatedCarouselSlider> {
   }
 }
 
-class CarouselSliderItem {
-  final String animation;
-  final String title;
+class CarouselItemImage {
+  final String image;
 
-  CarouselSliderItem({required this.animation, required this.title});
+  CarouselItemImage({required this.image});
 }

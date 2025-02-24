@@ -12,10 +12,10 @@ class _CarouselSliderWidgetState extends State<CarouselSliderWidget> {
   final ValueNotifier<int> _selectedIndex = ValueNotifier<int>(0);
 
   final List<String> _images = [
-    'assets/images/image.jpg',
-    'assets/images/image.jpg',
-    'assets/images/image.jpg',
-    'assets/images/image.jpg',
+    'assets/images/offer.jpg',
+    'assets/images/offer.jpg',
+    'assets/images/offer.jpg',
+    'assets/images/offer.jpg',
   ];
 
   @override
@@ -24,7 +24,7 @@ class _CarouselSliderWidgetState extends State<CarouselSliderWidget> {
       children: [
         CarouselSlider(
           options: CarouselOptions(
-            height: 180,
+            height: 120,
             viewportFraction: 0.95,
             onPageChanged: (currentIndex, reason) {
               _selectedIndex.value = currentIndex;
@@ -34,51 +34,45 @@ class _CarouselSliderWidgetState extends State<CarouselSliderWidget> {
             return Builder(
               builder: (BuildContext context) {
                 return Container(
-                  width: MediaQuery.of(context).size.width,
                   margin: const EdgeInsets.symmetric(horizontal: 2),
                   decoration: BoxDecoration(
-                    color: Colors.blue, // Change color to fit your theme
                     borderRadius: BorderRadius.circular(8),
-                    image: DecorationImage(
-                        image: AssetImage(imageUrl),
-                        fit: BoxFit.cover),
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(16),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Text(
-                          'TEXT', // Static text as placeholder
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        SizedBox(
-                          width: 90,
+                  child: Stack(
+                    fit: StackFit.loose,
+                    children: [
+                      Image.asset(
+                        imageUrl,
+                        fit: BoxFit.cover,
+                      ),
+                      Positioned(
+                        bottom: 20,
+                        right: 16,
+                        child: SizedBox(
+                          width: 60,
+                          height: 20,
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color(0xFF07ADAE),
-                              foregroundColor: Colors.white,
-                              fixedSize: const Size.fromWidth(double.maxFinite),
+                              backgroundColor: Colors.yellow.shade100,
                               shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8),
+                                borderRadius: BorderRadius.circular(6),
                               ),
-                              textStyle: const TextStyle(
-                                fontWeight: FontWeight.w400,
-                                fontSize: 16,
-                              ),
-                              padding: const EdgeInsets.symmetric(vertical: 12),
+                              padding: EdgeInsets.zero,
                             ),
                             onPressed: () {},
-                            child: const Text('Buy now'),
+                            child: const Text(
+                              'Buy Now',
+                              style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                fontSize: 10,
+                                color: Colors.red,
+                              ),
+                              overflow: TextOverflow.ellipsis,
+                            ),
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 );
               },
@@ -100,7 +94,7 @@ class _CarouselSliderWidgetState extends State<CarouselSliderWidget> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                       color: value == i
-                          ? const Color(0xFF07ADAE) // Replace with your theme color
+                          ? const Color(0xFF07ADAE)
                           : Colors.transparent,
                       border: Border.all(color: Colors.grey.shade300),
                     ),

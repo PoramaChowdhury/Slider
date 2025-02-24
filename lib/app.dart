@@ -1,19 +1,15 @@
 import 'package:carouselslider/animated_slider.dart';
 import 'package:carouselslider/carousel_slider_widget.dart';
+import 'package:carouselslider/image_slider.dart';
 import 'package:flutter/material.dart';
 
-class App extends StatefulWidget {
+class App extends StatelessWidget {
   const App({super.key});
 
   @override
-  State<App> createState() => _AppState();
-}
-
-class _AppState extends State<App> {
-  @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-     home: HomePage(),
+      home: HomePage(),
     );
   }
 }
@@ -26,14 +22,40 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Carousel Sliders"),
+        backgroundColor: const Color(0xFF07ADAE),
       ),
       body: ListView(
+        padding: const EdgeInsets.all(16),
         children: [
+          const Text(
+            'Offer Slider',
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 8),
           const CarouselSliderWidget(), // Carousel Slider 1
-          const SizedBox(height: 20),
-           AnimatedCarouselSlider(), // Carousel Slider 2
-          const SizedBox(height: 20),
-          //const TextImageSlider(), // Carousel Slider 3
+          const SizedBox(height: 16),
+          const Text(
+            'Animated Slider',
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 8),
+          AnimatedCarouselSlider(), // Carousel Slider 2
+          const SizedBox(height: 16),
+          const Text(
+            'Image Slider',
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 8),
+          const ImageCarouselSlider(), // Carousel Slider 3
         ],
       ),
     );
